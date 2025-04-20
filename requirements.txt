@@ -1,0 +1,4 @@
+PyYAML
+python-Levenshtein
+PyMuPDF
+pandas
