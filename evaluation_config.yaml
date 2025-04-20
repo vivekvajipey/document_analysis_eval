@@ -1,0 +1,22 @@
+# evaluation_ruminate/evaluation_config.yaml
+data_base_path: "./data/pdfs"
+ground_truth_base_path: "./data/ground_truth"
+results_base_path: "./results"
+pipeline_configs_dir: "./pipelines/configs"
+
+# Optional: Specify categories to run, '*' means all subdirs in data_base_path
+# dataset_categories:
+#   - academic_papers
+#   - scanned_docs
+
+# Optional: Limit number of PDFs per category (useful for testing)
+# pdf_limit_per_category: 5
+
+metrics:
+  - metric_module: metrics.text_accuracy
+    metric_class: TextEditDistance
+    params: {} # Optional params for metric init
+#  - metric_module: metrics.reading_order
+#    metric_class: ReadingOrderNED
+#    params: {}
+# Add other metrics to run here

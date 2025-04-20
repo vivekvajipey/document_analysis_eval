@@ -1,0 +1,16 @@
+# evaluation_ruminate/pipelines/configs/example_pipeline.yaml
+pipeline_name: pymupdf_basic_extraction
+
+stages:
+  - name: extract_text_pymupdf
+    tool_module: tools.pymupdf_extractor  # Python module path
+    tool_class: PyMuPDFExtractor       # Class name within the module
+    params: {}                         # Optional parameters for the tool's __init__
+
+# Add more stages here if needed for a multi-step pipeline
+#  - name: refine_text_with_llm
+#    tool_module: tools.gemini_wrapper
+#    tool_class: GeminiRefiner
+#    params:
+#      model_name: "gemini-1.5-flash"
+#      prompt_template: "Refine the following extracted text: {input_text}"
