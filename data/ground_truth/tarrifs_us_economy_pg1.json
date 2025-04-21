@@ -1,0 +1,29 @@
+{
+  "document_id": "tarrifs_us_economy_pg1",
+  "metadata": {
+    "title": "The Effects of Tariffs on the United States Economy",
+    "authors": ["U.S. Congressional Research Service"]
+  },
+  "content_units": [
+    {
+      "unit_id": "unit_1",
+      "text": "The Effects of Tariffs on the United States Economy",
+      "semantic_hints": ["Title"]
+    },
+    {
+      "unit_id": "unit_2",
+      "text": "Tariffs are taxes on imported goods. They aim to raise the cost of imports for U.S. firms and consumers, potentially shifting demand to domestic goods. Tariffs also generate government revenue—$85 billion in 2021, less than 3% of federal revenue. In addition to prices and demand, tariffs can affect U.S. production, employment, and investment as firms make adjustment decisions. Actual effects depend on market factors, such as price sensitivities and firm competitive responses.",
+      "semantic_hints": ["Paragraph"]
+    },
+    {
+      "unit_id": "unit_3",
+      "text": "When a tariff is imposed on a product, consumer prices typically rise, sales typically fall, and suppliers typically produce less. For U.S. importers of the taxed item, higher costs can mean reduced profits, lower wages, or workforce reductions. Tariffs are most likely to help industries that directly compete with imports. But when those industries use the protected item as an input, as with steel and aluminum tariffs, costs can rise for manufacturers that use those metals, with potential negative effects on production, employment, and investment.",
+      "semantic_hints": ["Paragraph"]
+    },
+    {
+      "unit_id": "unit_4",
+      "text": "Potential benefits of tariffs include higher profits and employment in firms that compete with imports. Tariffs may create new jobs, but often at a cost to other sectors or consumers due to higher prices. Actual employment effects also depend on the broader economic context, such as labor market conditions.",
+      "semantic_hints": ["Paragraph"]
+    }
+  ]
+} 

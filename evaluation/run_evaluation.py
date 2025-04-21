@@ -8,25 +8,34 @@ import importlib
 import pandas as pd # For saving aggregated results
 
 from pipelines.executor import PipelineExecutor
-from metrics.base_metric import BaseMetric # Assuming metrics are importable
+from metrics.base_metrics import BaseMetric # Corrected import
 
 # --- Helper Functions ---
 
 def load_ground_truth(gt_base_path: Path, pdf_filename: str) -> Dict[str, Any]:
-    """Loads various ground truth components for a given PDF."""
-    # This needs to be implemented based on how you store GT data
-    # Example: Load text, reading order, table structures, unit definitions
-    print(f"    Loading ground truth for {pdf_filename} (stub)...")
+    """Loads ground truth for a given PDF from a JSON file."""
+    pdf_name_no_ext = Path(pdf_filename).stem
+    json_path = gt_base_path / f"{pdf_name_no_ext}.json"
+    
+    print(f"    Loading ground truth for {pdf_filename} from {json_path}...")
+    
     gt_data = {}
-    # Example: Check for specific files and load them
-    # text_gt_path = gt_base_path / "text" / f"{pdf_filename}.txt"
-    # if text_gt_path.exists():
-    #    gt_data["text"] = text_gt_path.read_text()
-    # ro_gt_path = gt_base_path / "reading_order" / f"{pdf_filename}.json"
-    # if ro_gt_path.exists():
-    #    with open(ro_gt_path, 'r') as f:
-    #        gt_data["reading_order"] = json.load(f)
-    # Add logic for other GT types (tables, units, etc.)
+    if json_path.exists():
+        try:
+            with open(json_path, 'r') as f:
+                gt_data = json.load(f)
+                
+            # For text accuracy metrics, also provide concatenated text for simpler comparison
+            if "content_units" in gt_data:
+                concatenated_text = "\n".join([unit["text"] for unit in gt_data["content_units"]])
+                gt_data["text"] = concatenated_text
+                
+            print(f"    Ground truth loaded successfully with {len(gt_data.get('content_units', []))} content units")
+        except Exception as e:
+            print(f"    Error loading ground truth: {e}")
+    else:
+        print(f"    No ground truth file found at {json_path}")
+    
     return gt_data
 
 def load_metrics(metric_configs: List[Dict]) -> List[BaseMetric]:
