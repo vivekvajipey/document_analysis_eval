@@ -1,0 +1,2 @@
+pdf_filename,pipeline_name,run_timestamp,total_cost,total_latency,success,metrics,stages
+tarrifs_us_economy_pg1.pdf,pymupdf_basic_extraction,20250420_213437,0.0,0.0052100829998380505,True,"{'text_edit_distance': {'raw_text_distance': 1039.0, 'normalized_distance': 0.7448028673835125, 'unit_text_distance': 1042.0, 'unit_normalized_distance': 0.7469534050179212}}","[{'name': 'extract_text_pymupdf', 'cost': 0.0, 'latency': 0.0052100829998380505}]"

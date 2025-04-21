@@ -3,8 +3,13 @@ import yaml
 import importlib
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
+import sys
+import os
 
-from tools.base_tool import BaseTool # Assuming tools are importable
+# Add the parent directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from tools.base_tool import BaseTool # Now should be importable
 
 class PipelineExecutor:
     def __init__(self, pipeline_config_path: Path):

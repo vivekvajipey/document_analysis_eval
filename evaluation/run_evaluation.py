@@ -6,6 +6,12 @@ from pathlib import Path
 from datetime import datetime
 import importlib
 import pandas as pd # For saving aggregated results
+import sys
+import os
+from typing import Dict, Any, List
+
+# Add the parent directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from pipelines.executor import PipelineExecutor
 from metrics.base_metrics import BaseMetric # Corrected import
@@ -79,7 +85,9 @@ def calculate_all_metrics(metrics: List[BaseMetric], prediction: Any, ground_tru
 def save_results(output_dir: Path, pipeline_name: str, run_ts: str, pdf_filename: str,
                  pipeline_output: Dict, metrics_output: Dict):
     """Saves raw pipeline output and metrics for a single document."""
-    doc_results_dir = output_dir / "raw" / pipeline_name / run_ts / pdf_filename.stem
+    # Use Path to get stem (filename without extension)
+    pdf_stem = Path(pdf_filename).stem
+    doc_results_dir = output_dir / "raw" / pipeline_name / run_ts / pdf_stem
     doc_results_dir.mkdir(parents=True, exist_ok=True)
 
     # Save final structured output (used for metrics)
@@ -230,10 +238,11 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run Document Preprocessing Pipeline Evaluations")
-    parser.add_argument("--eval_config", type=Path, required=True, help="Path to the main evaluation YAML config file.")
-    parser.add_argument("--pipeline", type=str, nargs='+', help="Optional: Run only specific pipeline(s) by name (e.g., marker_baseline gemini_e2e). Runs all if not specified.")
-    # Add other arguments if needed (e.g., dataset filter, specific output dir)
-
+    parser = argparse.ArgumentParser(description="Run evaluation on document processing pipelines.")
+    parser.add_argument("--eval-config", "--eval_config", dest="eval_config", required=True,
+                        help="Path to the evaluation configuration YAML file.")
+    parser.add_argument("--pipeline", nargs="+", 
+                        help="Specific pipeline(s) to run. Runs all if not specified.")
     args = parser.parse_args()
+    
     main(args)
